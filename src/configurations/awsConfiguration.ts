@@ -5,8 +5,8 @@ export class AwsConfiguration {
     constructor() {
         // Configuração do AWS Cognito
         const config = {
-            accessKeyId: process.env.AWS_CHAVE_KEY,
-            secretAccessKey: process.env.AWS_CHAVE_SECRET,
+            accessKeyId: process.env.AWS_KEY,
+            secretAccessKey: process.env.AWS_SECRET,
             region: process.env.AWS_REGION_KEY
         };
 

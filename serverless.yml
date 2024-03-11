@@ -9,10 +9,10 @@ provider:
 # you can overwrite defaults here
   stage: dev
   environment:
-    AWS_CHAVE_KEY: 
-    AWS_CHAVE_SECRET: 
-    AWS_REGION_KEY: 
-    COGNITO_CLIENT_ID_KEY: 
+    AWS_KEY: ${{ secrets.AWS_KEY }}
+    AWS_SECRET: ${{ secrets.AWS_SECRET }}
+    AWS_REGION_KEY:  ${{ secrets.AWS_REGION_KEY }}
+    COGNITO_CLIENT_ID_KEY: ${{ secrets.COGNITO_CLIENT_ID_KEY }}
     
 package:
   individually: true  # Define package.individually como true a nível de serviço
