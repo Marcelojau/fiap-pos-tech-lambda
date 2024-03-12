@@ -23,7 +23,7 @@ jobs:
 
       - name: Wait for approval
         id: wait_for_approval
-        uses: octokit/wait-for-pull-request-approval@v1
+        uses: marcelo-gomes/wait-for-pull-request-approval@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
