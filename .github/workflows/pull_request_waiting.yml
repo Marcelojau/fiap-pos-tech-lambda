@@ -19,7 +19,7 @@ jobs:
         with:
           title: "Merge develop into main"
           body: "This pull request was automatically created to merge changes from develop into main."
-          base: main
+          base: release
           branch: develop
           labels: "auto-generated"
 
