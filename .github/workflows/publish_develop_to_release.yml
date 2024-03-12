@@ -23,7 +23,7 @@ jobs:
         id: wait_for_approval
         uses: octokit/wait-for-pull-request-approval@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN_GIT }}
           branch: release
           title: "[Automated] Merge da develop para release"
           body: "Este pull request foi gerado automaticamente para mesclar as alterações da branch develop na branch release."
