@@ -1,4 +1,4 @@
-name: Merge develop into release
+name: Create Pull Request to Release
 
 on:
   push:
@@ -10,35 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create pull request
-        id: create_pr
-        uses: peter-evans/create-pull-request@v3
-        with:
-          base: main
-          head: develop
-          title: Merge develop into release
-          body: Please review and approve this merge.
+      - name: Checkout do Código
+        uses: actions/checkout@v2
 
-      - name: Wait for approval
-        id: wait_for_approval
-        uses: octokit/wait-for-pull-request-approval@v1
+      - name: Criar Pull Request para Release
+        uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.TOKEN_GIT }}
           branch: release
+          base: develop
           title: "[Automated] Merge da develop para release"
           body: "Este pull request foi gerado automaticamente para mesclar as alterações da branch develop na branch release."
-
-
-  await_approval:
-    runs-on: ubuntu-latest
-    needs: create_pull_request
-    steps:
-      - name: Aprovar Pull Request
-        uses: mxschmitt/action-tmate@v3
-
-      - name: Merge pull request
-        if: steps.wait_for_approval.outputs.approved == 'true'
-        run: |
-          git checkout release
-          git pull origin develop
-          git push origin release
