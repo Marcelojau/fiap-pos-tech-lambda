@@ -21,3 +21,15 @@ jobs:
           base: develop
           title: "[Automated] Merge da develop para release"
           body: "Este pull request foi gerado automaticamente para mesclar as alterações da branch develop na branch release."
+
+      - name: Aguardar Aprovação de marcelojau
+        id: approval
+        uses: marcelojau/wait-for-approval-action@v1
+        with:
+          pull-request: ${{ steps.create_pr.outputs.pull_request_number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          approver: marcelojau
+
+      - name: Merge Pull Request
+        if: steps.approval.outputs.approved == 'true'
+        run: echo "Pull request approved! Merging now..."

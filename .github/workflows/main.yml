@@ -41,17 +41,13 @@ jobs:
   DeployToMain:
     name: Deploy to main
     runs-on: ubuntu-latest
-    needs: DeployServerless
-    if: github.ref == 'refs/heads/release' && github.event_name == 'push'
     steps:
-      - name: Checkout Repository
+      - name: Checkout do Código
         uses: actions/checkout@v2
         with:
-          ref: main
-          token: ${{secrets.TOKEN_GIT}}
-      - name: Set up Git
-        uses: actions/setup-git@v2
-      - name: Merge release into main
+          ref: main # Checkout na branch main
+
+      - name: Merge Release to Main
         run: |
-          git merge --no-ff ${{ github.event.before }}
+          git merge --no-ff ${{ github.event.ref }} -m "Merge release into main"
           git push origin main
