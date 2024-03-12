@@ -1,0 +1,20 @@
+name: Wait for Approval
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  wait_for_approval:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait for Approval
+        uses: arun291091/wait_for_approval_gha@v1
+        with:
+          base_repository_branch: release, main  # Nome da branch base onde o pull request será mesclado
+          github_org: MarceloJau  # Nome da sua organização no GitHub
+          repository_name: fiap-pos-tech-lambda   # Nome do seu repositório
+          pr_reviewer: marcelojau  # Nome do revisor do pull request (pode ser uma lista separada por vírgulas)
+          time_limit: 3000  # Limite de tempo para esperar pela aprovação em segundos
+          github_token: ${{ secrets.TOKEN_GIT }}  # Token de autenticação do GitHub, recomendado usar o token padrão disponível como secrets.GITHUB_TOKEN

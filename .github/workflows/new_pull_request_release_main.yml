@@ -3,7 +3,7 @@ name: Create Pull Request Develop To Release
 on:
   push:
     branches:
-      - develop
+      - release
 
 jobs:
   create_pull_request:
@@ -16,8 +16,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          title: "Merge develop into release"
-          body: "This pull request was automatically created to merge changes from develop into release."
+          title: "Merge release into develop"
+          body: "This pull request was automatically created to merge changes from release into main."
           base: release
-          branch: develop
+          branch: main
           labels: "auto-generated"

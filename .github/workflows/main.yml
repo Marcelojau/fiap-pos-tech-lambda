@@ -37,17 +37,3 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-
-  DeployToMain:
-    name: Deploy to main
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout do Código
-        uses: actions/checkout@v2
-        with:
-          ref: main # Checkout na branch main
-
-      - name: Merge Release to Main
-        run: |
-          git merge --no-ff ${{ github.event.ref }} -m "Merge release into main"
-          git push origin main
