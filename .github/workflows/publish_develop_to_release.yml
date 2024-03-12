@@ -22,13 +22,16 @@ jobs:
           title: "[Automated] Merge da develop para release"
           body: "Este pull request foi gerado automaticamente para mesclar as alterações da branch develop na branch release."
 
-      - name: Aguardar Aprovação de marcelojau
-        id: approval
-        uses: marcelojau/wait-for-approval-action@v1
+      - name: Wait for Approval
+        uses: arun291091/wait_for_approval_gha@v1
         with:
-          pull-request: ${{ steps.create_pr.outputs.pull_request_number }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          approver: marcelojau
+          base_repository_branch: release  # Nome da branch base onde o pull request será mesclado
+          github_org: Marcelo  # Nome da sua organização no GitHub
+          repository_name: fiap-pos-tech-lambda   # Nome do seu repositório
+          pr_reviewer: marcelojau  # Nome do revisor do pull request (pode ser uma lista separada por vírgulas)
+          time_limit: 3000  # Limite de tempo para esperar pela aprovação em segundos
+          github_token: ${{ secrets.TOKEN_GIT }}  # Token de autenticação do GitHub, recomendado usar o token padrão disponível como secrets.GITHUB_TOKEN
+        
 
       - name: Merge Pull Request
         if: steps.approval.outputs.approved == 'true'
