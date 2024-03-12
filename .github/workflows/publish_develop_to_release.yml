@@ -1,0 +1,36 @@
+name: Merge develop into release
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  merge_to_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create pull request
+        id: create_pr
+        uses: marcelo-gomes/create-pull-request@v3
+        with:
+          base: release
+          head: develop
+          title: Merge develop into release
+          body: Please review and approve this merge.
+
+      - name: Wait for approval
+        id: wait_for_approval
+        uses: octokit/wait-for-pull-request-approval@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
+
+      - name: Merge pull request
+        if: steps.wait_for_approval.outputs.approved == 'true'
+        run: |
+          git checkout release
+          git pull origin develop
+          git push origin release
