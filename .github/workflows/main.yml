@@ -42,6 +42,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [DeployServerless]
 
+    env:
+      _ENVIRONMENT: main  # Alterando apenas para este job
+      
     steps:
       - name: Checkout do Código
         uses: actions/checkout@v2
