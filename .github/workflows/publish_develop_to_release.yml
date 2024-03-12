@@ -16,7 +16,7 @@ jobs:
         id: create_pr
         uses: marcelo-gomes/create-pull-request@v3
         with:
-          base: release
+          base: main
           head: develop
           title: Merge develop into release
           body: Please review and approve this merge.
