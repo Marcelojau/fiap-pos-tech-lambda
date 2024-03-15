@@ -10,19 +10,7 @@ env:
   _ENVIRONMENT: development
   _REPOSITORY_NAME: github-action-nodejs-serverless
 
-jobs:
-  ValidatePullRequest:
-    name: validate
-    runs-on: ubuntu-latest
-    steps:
-      # Adicione os passos necessários para validar o pull request
-      - name: Validate pull request
-        run: echo "Validating pull request"
-      # Defina uma saída de aprovação, por exemplo, usando uma saída de script
-      - name: Set approval status
-        id: approval
-        run: echo "::set-output name=approved::true"
-        
+jobs:   
   DeployServerless:
     name: deploy
     runs-on: ubuntu-latest
