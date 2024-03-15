@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v2
+
+    - name: Verificar branch de origem e destino
+      run: |
+        if [ "${{ github.event.pull_request.head.ref }}" != "release" ] && [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
+          echo "Pull requests só podem ser mesclados na branch 'main' vindo de outras branches exceto 'release'."
+          exit 1
+        fi

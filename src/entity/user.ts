@@ -11,4 +11,5 @@ export default class User {
         this.document = document;
         this.created = created;
     }
+    
 }
