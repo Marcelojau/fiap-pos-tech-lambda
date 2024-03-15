@@ -1,7 +1,7 @@
 name: CI
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
 
@@ -12,10 +12,10 @@ jobs:
     steps:
     - name: Checkout do código
       uses: actions/checkout@v2
-    
-    - name: Verificar branch de origem
+
+    - name: Verificar branch de origem e destino
       run: |
-        if [ "${{ github.event.pull_request.head.ref }}" != "release" ]  && [ "${{ github.event.pull_request.base.ref }}" = "main" ]; then
-          echo "As pull requests da branch 'release' para 'main' não são permitidas."
+        if [ "${{ github.event.pull_request.head.ref }}" != "release" ] && [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
+          echo "Pull requests só podem ser mesclados na branch 'main' vindo de outras branches exceto 'release'."
           exit 1
         fi
