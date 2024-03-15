@@ -14,8 +14,6 @@ jobs:
   DeployServerless:
     name: deploy
     runs-on: ubuntu-latest
-    needs: ValidatePullRequest
-    if: ${{ needs.ValidatePullRequest.outputs.approved == 'true' }}
     strategy:
       matrix:
         node-version: [ 16.x ]
