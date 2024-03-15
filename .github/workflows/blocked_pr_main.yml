@@ -15,7 +15,7 @@ jobs:
     
     - name: Verificar branch de origem
       run: |
-        if [[ ${{ github.event.pull_request.head.ref }} != "release" ]]; then
+        if [ "${{ github.event.pull_request.head.ref }}" != "release" ]  && [ "${{ github.event.pull_request.base.ref }}" = "main" ]; then
           echo "As pull requests da branch 'release' para 'main' não são permitidas."
           exit 1
         fi
