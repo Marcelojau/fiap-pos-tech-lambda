@@ -37,6 +37,8 @@ export default class AwsService {
             console.log(error + " " + email + " " + name + " " + document + " ");
             throw error + " " + email + " " + name + " " + document + " ";
         }
+
+        
     }
 
     // Outros métodos para login, verificação de e-mail, etc.
