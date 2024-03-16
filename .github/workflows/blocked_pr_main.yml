@@ -17,7 +17,6 @@ jobs:
         if [ "${{ github.event.pull_request.head.ref }}" != "release" ] && [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
           echo "Pull requests só podem ser mesclados na branch 'main' vindo da branch 'release'."
           exit 1
-        fi
         else
             echo "Condições de mesclagem atendidas."
             exit 0
