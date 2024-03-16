@@ -2,8 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches:
-      - main
+    types: [opened, synchronize, reopened, labeled, unlabeled]
 
 jobs:
   build:
@@ -19,3 +18,11 @@ jobs:
           echo "Pull requests só podem ser mesclados na branch 'main' vindo da branch 'release'."
           exit 1
         fi
+        else
+            echo "Condições de mesclagem atendidas."
+            exit 0
+        fi
+        
+    - name: Aprovar Pull Request
+      if: success()
+      run: echo "Pull Request aprovado."
