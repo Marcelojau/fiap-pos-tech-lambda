@@ -16,6 +16,6 @@ jobs:
     - name: Verificar branch de origem e destino
       run: |
         if [ "${{ github.event.pull_request.head.ref }}" != "release" ] && [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
-          echo "Pull requests só podem ser mesclados na branch 'main' vindo de outras branches exceto 'release'."
+          echo "Pull requests só podem ser mesclados na branch 'main' vindo da branch 'release'."
           exit 1
         fi
