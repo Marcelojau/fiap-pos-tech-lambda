@@ -12,7 +12,7 @@ export class AwsConfiguration {
 
         AWS.config.update(config);
         this.cognito = new AWS.CognitoIdentityServiceProvider();
-        console.log("Validando o código la aws");
+        console.log("Validando o código la aws na data de 16/03/2024");
     }
 
     getCognito() {
