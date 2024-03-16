@@ -22,7 +22,7 @@ jobs:
             echo "Condições de mesclagem atendidas."
             exit 0
         fi
-        
-    - name: Aprovar Pull Request
-      if: success()
-      run: echo "Pull Request aprovado."
+
+    - name: Fechar Pull Request
+      if: failure()
+      run: gh pr close "${{ github.event.pull_request.number }}"
