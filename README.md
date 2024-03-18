@@ -5,9 +5,9 @@ URL de uso da lambda para gerenciamento dos usuários:
 https://2xn591ilr1.execute-api.us-east-1.amazonaws.com/default/lambda-autenticacao-pos-dev-validateUser
 
 # Stacks
-Typescript
-NodeJS
-Framework Express
+- Typescript
+- NodeJS
+- Framework Express
   
 # Integrantes Grupo 76
 Gabriel da Silva Barreto
