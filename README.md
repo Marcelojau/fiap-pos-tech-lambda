@@ -4,6 +4,9 @@ Projeto desenvolvimento para fiap, criação de uma lambda integrada ao cognito,
 URL de uso da lambda para gerenciamento dos usuários: 
 https://2xn591ilr1.execute-api.us-east-1.amazonaws.com/default/lambda-autenticacao-pos-dev-validateUser
 
+Vídeo de deploy automático, e integrações da lambda com o projeto de pedidos:
+https://www.youtube.com/watch?v=bhSfoafsJRI
+
 # Stacks
 - Typescript
 - NodeJS
