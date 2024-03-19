@@ -10,7 +10,7 @@ env:
   _ENVIRONMENT: development
   _REPOSITORY_NAME: github-action-nodejs-serverless
 
-jobs:
+jobs:   
   DeployServerless:
     name: deploy
     runs-on: ubuntu-latest
@@ -34,24 +34,8 @@ jobs:
           args: deploy
         env:
           LOG_LEVEL: debug
+          AWS_REGION_KEY: ${{ secrets.AWS_REGION_KEY }}
+          COGNITO_CLIENT_ID_KEY: ${{ secrets.COGNITO_CLIENT_ID_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-
-  Merge_to_main:
-    runs-on: ubuntu-latest
-    needs: [DeployServerless]
-
-    env:
-      _ENVIRONMENT: main  # Alterando apenas para este job
-      
-    steps:
-      - name: Checkout do Código
-        uses: actions/checkout@v2
-        with:
-          ref: main # Checkout na branch main
-
-      - name: Merge Release to Main
-        run: |
-          git merge --no-ff ${{ github.event.ref }} -m "Merge release into main"
-          git push origin main
