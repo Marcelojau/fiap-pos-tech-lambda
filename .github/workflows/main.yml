@@ -1,4 +1,4 @@
-name: Deploy release for AWS and Commit to Main
+name: Deploy release for AWS
 
 on:
   workflow_dispatch:
